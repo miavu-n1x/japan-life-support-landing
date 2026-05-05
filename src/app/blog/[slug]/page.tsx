@@ -31,7 +31,12 @@ export async function generateMetadata({
   return {
     title: `${post.title} | japan life support`,
     description: post.metaDescription,
-    keywords: [post.keyword, post.tag, "người Việt ở Nhật", "kinh nghiệm sống ở Nhật"],
+    keywords: [
+      post.keyword,
+      post.tag,
+      "người Việt ở Nhật",
+      "kinh nghiệm sống ở Nhật",
+    ],
     openGraph: {
       title: post.title,
       description: post.metaDescription,
@@ -83,27 +88,31 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </section>
         ))}
 
-        <section className="article-checklist">
-          <h2>Checklist xử lý nhanh</h2>
-          <ul>
-            {post.checklist.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
+        {post.checklist.length > 0 && (
+          <section className="article-checklist">
+            <h2>Checklist xử lý nhanh</h2>
+            <ul>
+              {post.checklist.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-        <section className="article-faq">
-          <h2>Câu hỏi thường gặp</h2>
-          {post.faq.map((item) => (
-            <div className="article-faq-item" key={item.question}>
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </div>
-          ))}
-        </section>
+        {post.faq.length > 0 && (
+          <section className="article-faq">
+            <h2>Câu hỏi thường gặp</h2>
+            {post.faq.map((item) => (
+              <div className="article-faq-item" key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         <footer className="article-footer-nav">
-          <Link href="/blog">← Xem tất cả bài viết</Link>
+          <Link href="/blog">← Quay lại blog</Link>
           <Link href="/#contact">Gửi câu hỏi miễn phí</Link>
         </footer>
       </article>

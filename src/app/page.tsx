@@ -6,6 +6,19 @@ const referenceMarkup = "\n\n<!-- NAV -->\n<nav>\n  <div class=\"nav-inner\">\n 
 
 export default function Home() {
   useEffect(() => {
+    const blogSlugs = [
+      "nhan-duoc-giay-nenkin-thi-phai-lam-gi",
+      "giay-bao-thue-o-nhat-can-lam-gi-khi-nhan-duoc",
+      "checklist-chuyen-nha-o-nhat-dung-bo-sot-buoc-nay",
+      "cach-tiet-kiem-chi-phi-sinh-hoat-o-nhat-thuc-te",
+      "san-sale-o-nhat-nen-xem-o-dau-truoc",
+    ];
+    const postCards = Array.from(document.querySelectorAll<HTMLAnchorElement>(".post-card"));
+    postCards.forEach((card, index) => {
+      const slug = blogSlugs[index];
+      if (slug) card.href = `/blog/${slug}`;
+    });
+
     const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>(".faq-q"));
     const onClick = (event: Event) => {
       const button = event.currentTarget as HTMLButtonElement;
